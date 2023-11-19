@@ -1,0 +1,63 @@
+
+Patient {
+	id integer pk increments
+	FIO text
+	date_of_birth datetime
+}
+
+doctor {
+	id integer pk increments
+	FIO text
+}
+
+specialization {
+	id integer pk increments
+	name text
+}
+
+doctor_specialization {
+	doctor_id integer pk increments > doctor.id
+	rating integer
+	specialization_id integer pk > specialization.id
+}
+
+equipment_type {
+	id integer pk increments
+	name text
+}
+
+equipment {
+	id integer pk increments
+	is_activ bool
+	model text
+	type_id integer > equipment_type.id
+}
+
+doctors_working_time {
+	date date pk
+	finish_time datetime
+	start_time datetime
+	doctor_id integer pk > doctor.id
+}
+
+schedule_appointment {
+	doctor_id integer increments > doctor.id
+	specializitions_doctor_id integer > specialization.id
+	id integer pk
+	finish_time datetime
+	start_time datetime
+	patient_id integer > Patient.id
+}
+
+required_equipment {
+	id_equipment_type integer pk increments > equipment_type.id
+	id_schedule integer pk > schedule_appointment.id
+}
+
+result_doctor_appointment {
+	id_schedule integer pk increments > schedule_appointment.id
+	complaints text
+	result text
+	recipe integer
+}
+
