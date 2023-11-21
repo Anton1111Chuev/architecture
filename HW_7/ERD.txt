@@ -1,0 +1,57 @@
+
+Product {
+	id integer pk increments
+	description text
+	name text
+	category_id integer > CategoryProduct.id
+}
+
+CategoryProduct {
+	id integer pk increments
+	name text
+	category_id integer > Untitled.id
+}
+
+WareHouse {
+	id integer pk increments
+	adress text
+	name text
+}
+
+ProductBalance {
+	Product_id integer pk increments > Product.id
+	balance integer
+	warehouse_id integer pk > WareHouse.id
+}
+
+Prices {
+	Product_id integer pk > Product.id
+	price integer
+	date date pk
+}
+
+clients {
+	id integer pk increments
+	pfone text
+	adress text
+	name text
+}
+
+Orders {
+	id integer pk increments
+	status_id integer > OrderStatus.id
+	date date
+	client_id integer > clients.id
+}
+
+OrderStatus {
+	id integer pk increments
+	name text
+}
+
+OrderList {
+	order_id integer pk > Orders.id
+	quantity integer
+	product_id integer pk > Product.id
+}
+
