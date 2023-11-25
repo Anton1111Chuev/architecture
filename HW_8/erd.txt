@@ -1,0 +1,48 @@
+users {
+	id int pk
+	user_type_id int > user_types.id
+	parse_id varchar
+	email varchar
+	password varchar
+	logged_in boolean
+	token_facebook varchar
+	token_twitter varchar
+	user_token varchar
+	token_expiration datetime
+}
+
+
+user_types {
+	id int pk
+	type varchar
+}
+
+cafe {
+	id integer pk increments
+	adress text
+	name text
+}
+
+places {
+	id integer pk increments
+	descroption text
+	cafe_id integer > cafe.id
+	max_percon integer
+}
+
+open_hours {
+	cafe_id integer pk increments > cafe.id
+	finish_time integer
+	start_time time
+	date date pk
+}
+
+booking {
+	id integer pk increments
+	user_id integer > users.id
+	place_id integer > places.id
+	datetime_start datetime
+	datetime_finish datetime
+	is_active bool
+}
+
