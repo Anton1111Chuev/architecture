@@ -11,6 +11,7 @@ users {
 	token_expiration datetime
 }
 
+
 user_types {
 	id int pk
 	type varchar
