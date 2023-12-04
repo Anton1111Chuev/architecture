@@ -1,0 +1,29 @@
+
+customer {
+	id int pk
+	FIO text
+	email varchar
+	password varchar
+}
+
+orders {
+	id int pk
+	user_id int > customer.id
+	summ real
+	date_start date
+	date_finish date
+}
+
+VM {
+	id integer pk increments
+	id_order integer > orders.id
+	RAM integer
+	CPU integer
+	GPU text
+}
+
+ip_adress {
+	id integer pk increments
+	id_order integer > orders.id
+	ip_adress text
+}
