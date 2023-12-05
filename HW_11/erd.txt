@@ -1,0 +1,51 @@
+
+users {
+	id int pk
+	FIO text
+	user_accessgroup_id int > user_type.id
+	email varchar
+	password varchar
+}
+
+user_type {
+	id integer pk increments
+	name integer
+}
+
+robots {
+	id integer pk increments
+	model_id integer > robots_model.id
+	name integer
+}
+
+robots_model {
+	id integer pk increments
+	name text
+	descpiption text
+}
+
+owners {
+	id integer pk increments
+	users integer > users.id
+	robot_id integer > robots.id
+}
+
+tokens {
+	id integer pk increments
+	user_id integer > users.id
+	date_finish datetime
+}
+
+schedule {
+	id integer pk increments
+	robot_id integer > robots.id
+	date_start datetime
+	type_clean_id integer > types_clean.id
+}
+
+types_clean {
+	id integer pk increments
+	model_id integer > robots_model.id
+	name text
+}
+
